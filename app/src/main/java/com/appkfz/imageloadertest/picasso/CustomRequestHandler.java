@@ -19,20 +19,21 @@ import okhttp3.OkHttpClient;
 
 public class CustomRequestHandler extends RequestHandler {
 
-    private final static String SCHEME = "encrypt_http";
+    private final static String SCHEME_HTTP = "encrypt_http";
+    private final static String SCHEME_HTTPS = "encrypt_https";
 
 
     @Override
     public boolean canHandleRequest(com.squareup.picasso.Request data) {
         String scheme = data.uri.getScheme();
-        return SCHEME.equals(scheme);
+        return SCHEME_HTTP.equals(scheme) || SCHEME_HTTPS.equals(scheme);
     }
 
 
     @Override
     public Result load(Request request, int networkPolicy) throws IOException {
-        String url = request.uri.toString().toUpperCase();
-        url = url.substring("ENCRYPT_".length(), url.length());
+        String url = request.uri.toString();
+        url = url.substring("encrypt_".length(), url.length());
         OkHttpClient okHttpClient = HttpClient.getDefaultOkHttpClient();
         okhttp3.Request req = new okhttp3.Request.Builder().url(url).build();
         okhttp3.Response response = okHttpClient.newCall(req).execute();

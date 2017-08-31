@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.appkfz.imageloadertest.picasso.CustomRequestHandler;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
@@ -13,7 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
    // private final static String imageUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504172817844&di=6e98320f43cf019a8b42139a1a514570&imgtype=0&src=http%3A%2F%2Fimg02.tooopen.com%2Fimages%2F20160428%2Ftooopen_sy_157231277582.jpg";
 
-    private final static String imageUrl = "file:///sdcard/ic_launcher_encrypt.png";
+    private final static String imageUrl = "encrypt_https://raw.githubusercontent.com/chenyangcun/ImageLoaderTest/master/app/src/main/raw/ic_launcher_encrypt.png";
 
     //private final static String imageUrl = "file:///sdcard/ic_launcher.png";
 
@@ -31,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.glideLoad).setOnClickListener(this);
         findViewById(R.id.encrypt).setOnClickListener(this);
 
-        Picasso picasso = new Picasso.Builder(this).addRequestHandler(new CustomRequestHandler()).build();
-        Picasso.setSingletonInstance(picasso);
+
+
 
     }
 
@@ -64,8 +63,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.encrypt:
-                EncryptUtil.encryptImageFile("/sdcard/ic_launcher.png",
-                        "/sdcard/ic_launcher_encrypt.png");
+//                EncryptUtil.encryptImageFile("/sdcard/ic_launcher.png",
+//                        "/sdcard/ic_launcher_encrypt.png");
+//                try {
+//                    File file = new File("/sdcard/ic_launcher_encrypt.png");
+//                    int length = (int) file.length();
+//                    byte[] buffer = new byte[length];
+//                    FileInputStream fis = new FileInputStream(file);
+//                    IOUtils.readFully(fis,buffer);
+//                   // byte[] edata = EncryptUtil.encrypt(data, data.length);
+//                    byte[] result = EncryptUtil.decrypt(buffer);
+//                    FileOutputStream fos = new FileOutputStream("/sdcard/out.png");
+//                    IOUtils.write(result, fos);
+//                    Log.d("TAG", "result="+result[0]);
+//                    fis.close();
+//                    fos.close();
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                }
                 break;
 
         }

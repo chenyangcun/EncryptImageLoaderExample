@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.appkfz.imageloadertest.glide.CustomGlideUrl;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
    // private final static String imageUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504172817844&di=6e98320f43cf019a8b42139a1a514570&imgtype=0&src=http%3A%2F%2Fimg02.tooopen.com%2Fimages%2F20160428%2Ftooopen_sy_157231277582.jpg";
 
-    private final static String imageUrl = "encrypt_https://raw.githubusercontent.com/chenyangcun/ImageLoaderTest/master/app/src/main/raw/ic_launcher_encrypt.png";
+    private final static String imageUrl = "https://raw.githubusercontent.com/chenyangcun/ImageLoaderTest/master/app/src/main/raw/ic_launcher_encrypt.png";
 
     //private final static String imageUrl = "file:///sdcard/ic_launcher.png";
 
@@ -37,14 +38,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loadImageWithGlide() {
         ivImage.setImageBitmap(null);
-        Glide.with(this).load(imageUrl).into(ivImage);
+        Glide.with(this).load(getCustomGlideUrl()).into(ivImage);
 
     }
 
 
     private void loadImageWithPicasso() {
         ivImage.setImageBitmap(null);
-        Picasso.with(this).load(imageUrl).into(ivImage);
+        Picasso.with(this).load(getImageUrlForPicasso()).into(ivImage);
     }
 
     @Override
@@ -85,5 +86,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+    }
+
+    public String getImageUrlForPicasso() {
+        return "encrypt_"+imageUrl;
+    }
+
+    public CustomGlideUrl getCustomGlideUrl(){
+        return new CustomGlideUrl(imageUrl);
     }
 }
